@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 
-export default function page() {
+export default function Page() {
     // let randomNumber=Math.floor(Math.random() * 20) + 1;
     const [randomNumber, setRandomNumber]=useState(null);
     const [inputNumber,setInputNumber]=useState(0);

@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 
-export default function page() {
+export default function Page() {
     let bgColor=["bg-green-400","bg-blue-700","bg-black"]
     const [indexValue,setIndexvalue]=useState(0);
 

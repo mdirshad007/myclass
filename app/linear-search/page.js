@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 
-export default function page() {
+export default function Page() {
     const numbers=[1,2,3,54,65,66,7,232,]
     const [inputNumber,setInputNumber]=useState(null)
     const [result,setResult]=useState(false)
@@ -24,7 +24,7 @@ export default function page() {
         Here is list of number &nbsp;
         {
             numbers.map((items,id)=>(
-                <span>{items}, </span>
+                <span key={id}>{items}, </span>
             ))
         }
         <input type="number" name="" id="" className='w-full h-[40px] border my-3 px-4 py-2' placeholder='Enter your number' onChange={(event)=>{setInputNumber(event.target.value)}} value={inputNumber}/>
