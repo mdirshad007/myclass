@@ -1,7 +1,7 @@
 "use client"
 import { useEffect } from "react";
 
-export default function page() {
+export default function Page() {
   let num =7548;
   let reverseNumber=null;
   let remider=0;
