@@ -3,11 +3,13 @@ import React from "react";
 async function fetchData(id) {
   let responce = await fetch(`http://localhost:3000/api/dbuser/${id}`);
   responce = await responce.json();
-  return responce[0];
+  return responce.result
 }
 export default async function page({ params }) {
   const singleUser = params.user;
   const userData = await fetchData(singleUser);
+  console.log(userData);
+  
   if(userData.page=="404"){
     redirect("/not-found")
   }
