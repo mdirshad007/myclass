@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import React from 'react'
+import { FaEdit } from "react-icons/fa";
+import { RiDeleteBin5Fill } from "react-icons/ri";
 async function userData(){
 let response=await fetch('http://localhost:3000/api/dbuser');
 response= await response.json();
@@ -17,6 +19,14 @@ export default async function page() {
                     <img src={item.avatar} alt={item.first_name} className='w-28 h-28 object-cover rounded-full overflow-hidden'/>
                     <p className='font-bold'>{item.first_name} {item.last_name}</p>
                     <p>{item.email}</p>
+                    </div>
+                    <div className='flex gap-2 justify-center'>
+                        <button>
+                        <FaEdit className='text-blue-600 text-2xl' />
+                        </button>
+                        <button>
+                        <RiDeleteBin5Fill className='text-red-600 text-2xl' />
+                        </button>
                     </div>
                 </div>
                 </Link>

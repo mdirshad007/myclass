@@ -8,11 +8,9 @@ async function fetchData(id) {
 
 export default async function page({ params }) {
 
-  console.log("----------->",params)
   const singleUser = params?.user;
 
   const userData = await fetchData(singleUser);
-  console.log(userData);
   
   if(userData.page=="404"){
     redirect("/not-found")
