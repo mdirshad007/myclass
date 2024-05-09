@@ -21,12 +21,12 @@ export default async function page() {
                     <p>{item.email}</p>
                     </div>
                     <div className='flex gap-2 justify-center'>
-                        <button>
+                        <Link href={`/users/${item.id}/edit`}><button>
                         <FaEdit className='text-blue-600 text-2xl' />
-                        </button>
-                        <button>
+                        </button></Link>
+                        <Link href={`/users/${item.id}/delete`}><button>
                         <RiDeleteBin5Fill className='text-red-600 text-2xl' />
-                        </button>
+                        </button></Link>
                     </div>
                 </div>
                 </Link>
