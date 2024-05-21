@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import { user } from '../api/util/db'
+import { user } from '../../api/util/db'
 
 export default function Page() {
     const [id,setId]=useState("")
