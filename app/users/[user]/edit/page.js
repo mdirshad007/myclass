@@ -18,10 +18,36 @@ export default function page({params}) {
     useEffect(()=>{
         fetchData(id)
     },[])
+
+    const handelUpdateUserData=()=>{
+        let userNewData={
+            "id":id,
+        "email": email,
+        "first_name": first_name,
+        "last_name": last_name,
+        "avatar": avatar
+        }
+        updateData(userNewData)
+    }
+    const updateData=async (data)=>{
+        let result=await fetch(`http://localhost:3000/api/dbuser/${id}`,{
+            method:"PUT",
+            body:JSON.stringify(data)
+        })
+        result=await result.json()
+        if(result.success){
+            alert("Data is updated")
+        }
+        else{
+            alert("Somthing error, Data is not updated")
+        }
+    }
   return (
     <section className='px-5 py-20'>
     <div className='max-w-[960px] mx-auto w-full'>
-        <h1 className='text-5xl mb-5 font-bold'>Edit {first_name} Details</h1>
+    <img src={avatar} alt={first_name} className='w-28 h-28 object-cover rounded-full overflow-hidden mx-auto'/>
+        <h1 className='text-5xl mb-5 font-bold text-center'>Edit {first_name} Details</h1>
+        
             <div className='flex gap-5 mb-5'>
             <div className='w-full md:w-1/2'>
                 <input type="text" value={first_name} onChange={(event)=>{set_first_name(event.target.value)}} name="first_name" id="first_name" placeholder='Enter First Name' className='w-full h-14 mt-4 border focus:border-green-500 border-gray-200 p-2 rounded-md' />
@@ -36,7 +62,7 @@ export default function page({params}) {
             <div className='mb-5'>
                 <input type="url" value={avatar} onChange={(event)=>{set_avatar(event.target.value)}} name="avatar" id="avatar" placeholder='Enter User Image URL' className='w-full h-14 mt-4 border focus:border-green-500 border-gray-200 p-2 rounded-md' />
             </div>
-            <button className='bg-green-700 text-white py-3 px-5 rounded-lg'>
+            <button className='bg-green-700 text-white py-3 px-5 rounded-lg mx-auto' onClick={handelUpdateUserData}>
                 Update User
             </button>
     

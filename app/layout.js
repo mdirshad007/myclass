@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import UserDetailsProvider from "./components/userDetailsProvider/UserDetailsProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +13,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <UserDetailsProvider>
-        {children}
+          <CountProvider>{children}</CountProvider>
         </UserDetailsProvider>
-        </body>
+      </body>
     </html>
   );
 }
