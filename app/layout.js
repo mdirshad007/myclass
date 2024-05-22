@@ -1,5 +1,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import UserDetailsProvider from "./components/userDetailsProvider/UserDetailsProvider";
+import CountProvider from "./components/Context/CountProvider";
+import User1DetailsProvider from "./components/Context/User1DetailsProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,7 +16,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <UserDetailsProvider>
+          <User1DetailsProvider>
           <CountProvider>{children}</CountProvider>
+          </User1DetailsProvider>
         </UserDetailsProvider>
       </body>
     </html>
