@@ -14,6 +14,7 @@ export default function Page() {
     //     setIndexvalue(0);
     // }
     setIndexvalue(indexValue+1);
+    console.log("======>",indexValue);
     console.log(indexValue%3);
   }
     return (
@@ -24,3 +25,4 @@ export default function Page() {
     </section>
   )
 }
+

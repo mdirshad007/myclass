@@ -2,10 +2,15 @@ import React from "react";
 import TaskDone from "../TaskDone/TaskDone";
 import Link from "next/link";
 import TaskNotDone from "../TaskNotDone/TaskNotDone";
+import FatchData from "./components/FatchData";
 
 export default function ToDoList() {
+  const handelReceivedListData=(list)=>{
+    console.log(list)
+  }
   return (
     <ul>
+      <FatchData receivedListData={handelReceivedListData}/>
       <Link href="/change-background">
         <TaskDone taskName="Use of useState" />
       </Link>
