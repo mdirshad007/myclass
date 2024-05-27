@@ -18,6 +18,9 @@ export default function ToDoList() {
       <Link href="/use-reducer-hook">
         <TaskDone taskName="Use of usReducer hook" />{" "}
       </Link>
+      <Link href="/use-memo">
+        <TaskDone taskName="Use of useMemo" />{" "}
+      </Link>
       <Link href="/server-side-api-data">
         <TaskDone taskName="Server Side Data Fetch" />{" "}
       </Link>
