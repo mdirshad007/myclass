@@ -2,20 +2,33 @@ import React from "react";
 import TaskDone from "../TaskDone/TaskDone";
 import Link from "next/link";
 import TaskNotDone from "../TaskNotDone/TaskNotDone";
-import FatchData from "./components/FatchData";
 
-export default function ToDoList() {
-  const handelReceivedListData=(list)=>{
-    console.log(list)
-  }
+const fetchList=async ()=>{
+  let list=await fetch(`https://6654c2d73c1d3b6029374b42.mockapi.io/todo/list`)
+  list=await list.json()
+  return list
+ }
+ 
+export default async function ToDoList() {
+  const listData=await fetchList();
   return (
     <ul>
-      <FatchData receivedListData={handelReceivedListData}/>
-      <Link href="/change-background">
-        <TaskDone taskName="Use of useState" />
+      {
+        listData.map((item,index)=>(
+          <li key={item.id} className="border-b border-gray-200 py-3 flex justify-between">
+          <Link href={item.link}>
+            {item.status==true?<TaskDone taskName={item.title} />:<TaskNotDone taskName={item.title} />}
       </Link>
+      <div className="flex gap-2">
+        <div>Edit</div>
+        <div>Delete</div>
+      </div>
+      </li>
+        ))
+      }
+      
 
-      <Link href="/test-context">
+      {/* <Link href="/test-context">
         <TaskDone taskName="Use of useContext" />{" "}
       </Link>
       <Link href="/use-reducer-hook">
@@ -35,7 +48,7 @@ export default function ToDoList() {
       </Link>
       <Link href="/redux/use-redux">
         <TaskNotDone taskName="Redux tool kit" />{" "}
-      </Link>
+      </Link> */}
     </ul>
   );
 }
