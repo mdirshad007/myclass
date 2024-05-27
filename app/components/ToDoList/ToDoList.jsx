@@ -7,19 +7,23 @@ export default function ToDoList() {
   return (
     <ul>
       <Link href="/change-background">
-        <TaskDone taskName="Bg Color change" />
+        <TaskDone taskName="Use of useState" />
       </Link>
-      <Link href="/users">
-        <TaskDone taskName="User fetch" />{" "}
-      </Link>
+
       <Link href="/test-context">
-        <TaskDone taskName="Use of Context" />{" "}
+        <TaskDone taskName="Use of useContext" />{" "}
       </Link>
       <Link href="/use-reducer-hook">
-        <TaskDone taskName="Use of usReducer hook" />{" "}
+        <TaskDone taskName="Use of useReducer" />{" "}
       </Link>
       <Link href="/use-memo">
         <TaskDone taskName="Use of useMemo" />{" "}
+      </Link>
+      <Link href="/use-callback">
+        <TaskDone taskName="Use of useCallBack" />{" "}
+      </Link>
+      <Link href="/users">
+        <TaskDone taskName="User fetch" />{" "}
       </Link>
       <Link href="/server-side-api-data">
         <TaskDone taskName="Server Side Data Fetch" />{" "}
