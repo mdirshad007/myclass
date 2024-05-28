@@ -1,54 +1,68 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import TaskDone from "../TaskDone/TaskDone";
-import Link from "next/link";
 import TaskNotDone from "../TaskNotDone/TaskNotDone";
+import DeleteItem from "./DeleteItem";
+import EditItem from "./EditItem";
+import Link from "next/link";
 
-const fetchList=async ()=>{
-  let list=await fetch(`https://6654c2d73c1d3b6029374b42.mockapi.io/todo/list`)
-  list=await list.json()
-  return list
- }
- 
-export default async function ToDoList() {
-  const listData=await fetchList();
+export default function ToDoList() {
+  const [list, setList] = useState(null);
+  const [deleteStatus, setDeleteStatus] = useState(false);
+
+  useEffect(() => {
+    const fetchList = async () => {
+      let response = await fetch(
+        `https://6654c2d73c1d3b6029374b42.mockapi.io/todo/list`
+      );
+      let data = await response.json();
+      setList(data);
+    };
+    fetchList();
+  }, []);
+
+  const handleDeleteUserUpdate = (id, status) => {
+    const newList = [...list];
+    newList.splice(id, 1);
+    setList(newList);
+    console.log(newList);
+    setDeleteStatus(status);
+  };
+
   return (
-    <ul>
-      {
-        listData.map((item,index)=>(
-          <li key={item.id} className="border-b border-gray-200 py-3 flex justify-between">
-          <Link href={item.link}>
-            {item.status==true?<TaskDone taskName={item.title} />:<TaskNotDone taskName={item.title} />}
-      </Link>
-      <div className="flex gap-2">
-        <div>Edit</div>
-        <div>Delete</div>
-      </div>
-      </li>
-        ))
-      }
-      
-
-      {/* <Link href="/test-context">
-        <TaskDone taskName="Use of useContext" />{" "}
-      </Link>
-      <Link href="/use-reducer-hook">
-        <TaskDone taskName="Use of useReducer" />{" "}
-      </Link>
-      <Link href="/use-memo">
-        <TaskDone taskName="Use of useMemo" />{" "}
-      </Link>
-      <Link href="/use-callback">
-        <TaskDone taskName="Use of useCallBack" />{" "}
-      </Link>
-      <Link href="/users">
-        <TaskDone taskName="User fetch" />{" "}
-      </Link>
-      <Link href="/server-side-api-data">
-        <TaskDone taskName="Server Side Data Fetch" />{" "}
-      </Link>
-      <Link href="/redux/use-redux">
-        <TaskNotDone taskName="Redux tool kit" />{" "}
-      </Link> */}
-    </ul>
+    <div>
+      {deleteStatus && (
+        <p className="text-red-600 font-bold text-xl mb-5">
+          Deleted Successfully
+        </p>
+      )}
+      {list &&
+        list.map((item, index) => (
+          <ul
+            key={item.id}
+            className="border-b border-gray-200 py-3 flex justify-between"
+          >
+            <Link href={item.link}>
+              {item.status === true ? (
+                <TaskDone taskName={item.title} />
+              ) : (
+                <TaskNotDone taskName={item.title} />
+              )}
+            </Link>
+            <div className="flex gap-2">
+              <div>
+                <EditItem />
+              </div>
+              <div>
+                <DeleteItem
+                  id={item.id}
+                  index={index}
+                  deleteUserState={handleDeleteUserUpdate}
+                />
+              </div>
+            </div>
+          </ul>
+        ))}
+    </div>
   );
 }
