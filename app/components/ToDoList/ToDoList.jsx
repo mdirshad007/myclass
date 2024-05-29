@@ -51,7 +51,7 @@ export default function ToDoList() {
             </Link>
             <div className="flex gap-2">
               <div>
-                <EditItem />
+                <EditItem id={item.id} />
               </div>
               <div>
                 <DeleteItem
