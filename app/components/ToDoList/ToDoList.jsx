@@ -29,11 +29,22 @@ export default function ToDoList() {
     console.log(newList);
     setDeleteStatus(status);
   };
+  const [modelState, setModelState] = useState(false);
+  const handelAddTask = () => {
+    setModelState(true);
+  };
+
+  const handelAddDataStore = (data) => {
+    console.log(data);
+  };
 
   return (
     <div>
       <div className="flex justify-end">
-        <button className="bg-blue-700 text-white px-4 py-3 rounded mb-3">
+        <button
+          className="bg-blue-700 text-white px-4 py-3 rounded mb-3"
+          onClick={handelAddTask}
+        >
           Add Task
         </button>
       </div>
@@ -69,7 +80,12 @@ export default function ToDoList() {
             </div>
           </ul>
         ))}
-      <AddItemModel />
+      {modelState && (
+        <AddItemModel
+          closeModel={() => setModelState(false)}
+          addDataStore={handelAddDataStore}
+        />
+      )}
     </div>
   );
 }
