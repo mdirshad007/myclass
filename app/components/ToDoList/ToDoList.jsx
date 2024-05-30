@@ -11,16 +11,18 @@ export default function ToDoList() {
   const [list, setList] = useState(null);
   const [deleteStatus, setDeleteStatus] = useState(false);
 
+  const fetchList = async () => {
+    let response = await fetch(
+      `https://6654c2d73c1d3b6029374b42.mockapi.io/todo/list`
+    );
+    let data = await response.json();
+    setList(data);
+  };
+  
   useEffect(() => {
-    const fetchList = async () => {
-      let response = await fetch(
-        `https://6654c2d73c1d3b6029374b42.mockapi.io/todo/list`
-      );
-      let data = await response.json();
-      setList(data);
-    };
     fetchList();
   }, []);
+
 
   const handleDeleteUserUpdate = (id, status) => {
     const newList = [...list];
@@ -33,13 +35,23 @@ export default function ToDoList() {
   const handelAddTask = () => {
     setModelState(true);
   };
+  const [resultStatus,setresultStatus]=useState(0)
 
   const handelAddDataStore = (data) => {
-    console.log(data);
+    setresultStatus(data)
+    setTimeout(() => {
+      setresultStatus(0)
+    }, 3000);
   };
+  useEffect(()=>{
+    fetchList();
+  },[resultStatus])
 
   return (
     <div>
+      <div className="flex justify-start">
+        <p className={`text-green-600 font-bold bg-green-100 rounded-md w-full transition-all mb-5 ${resultStatus!=0?'opacity-1 h-auto px-3 py-4':'opacity-0 h-0'}`}>New Record is added</p>
+      </div>
       <div className="flex justify-end">
         <button
           className="bg-blue-700 text-white px-4 py-3 rounded mb-3"

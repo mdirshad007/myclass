@@ -33,11 +33,11 @@ export default function AddItemModel({ closeModel, addDataStore }) {
           body: JSON.stringify(data),
         }
       );
+      
       if (response.ok) {
-        let data = await response.json();
-        console.log(data, "<=====");
-        closeModel();
         setResult(1);
+        let data = await response.json();
+        closeModel();
       } else {
         setResult(2);
       }
@@ -47,7 +47,6 @@ export default function AddItemModel({ closeModel, addDataStore }) {
     }
   };
   useEffect(() => {
-    console.log(result);
     addDataStore(result);
   }, [result]);
   return (
