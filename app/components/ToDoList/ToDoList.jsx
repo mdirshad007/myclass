@@ -5,6 +5,7 @@ import TaskNotDone from "../TaskNotDone/TaskNotDone";
 import DeleteItem from "./DeleteItem";
 import EditItem from "./EditItem";
 import Link from "next/link";
+import AddItemModel from "./AddItemModel";
 
 export default function ToDoList() {
   const [list, setList] = useState(null);
@@ -31,6 +32,11 @@ export default function ToDoList() {
 
   return (
     <div>
+      <div className="flex justify-end">
+        <button className="bg-blue-700 text-white px-4 py-3 rounded mb-3">
+          Add Task
+        </button>
+      </div>
       {deleteStatus && (
         <p className="text-red-600 font-bold text-xl mb-5">
           Deleted Successfully
@@ -63,6 +69,7 @@ export default function ToDoList() {
             </div>
           </ul>
         ))}
+      <AddItemModel />
     </div>
   );
 }
