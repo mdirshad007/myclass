@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
-export default function EditModel({ id, modelStatus, closeModel }) {
+export default function EditModel({ id, updateModelStatus, closeModel }) {
   const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
   const [taskStatus, setTaskStatus] = useState(false);
+  const [resultStatus, setResult] = useState(0);
   const modelRef = useRef();
 
   const handleCloseModelByBg = (e) => {
@@ -48,6 +49,13 @@ export default function EditModel({ id, modelStatus, closeModel }) {
         headers: { "Content-Type": "application/json" },
       }
     );
+    if (result.ok) {
+      setResult(1);
+      updateModelStatus(1);
+      closeModel();
+    } else {
+      setResult(2);
+    }
   };
 
   return (
@@ -57,6 +65,11 @@ export default function EditModel({ id, modelStatus, closeModel }) {
       className="fixed inset-0 bg-black backdrop-blur-sm bg-opacity-40 flex justify-center items-center px-3 py-10"
     >
       <div className="max-w-3xl w-full bg-white rounded-lg">
+      {resultStatus == 2 ? (
+              <p className="text-red-600 font-bold">Task is not Updated</p>
+            ) : (
+              ""
+            )}
         <div className="relative px-4 py-5 border-b border-gray-200">
           <button className="absolute top-2 right-2" onClick={closeModel}>
             <IoMdClose className="hover:text-red-700 text-gray-600 text-2xl" />

@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 
-export default function page({params}) {
+export default function Page({params}) {
     const id=params.user;
     const [first_name,set_first_name]=useState("")
     const [last_name,set_last_name]=useState("")

@@ -66,7 +66,7 @@ export default function AddItemModel({ closeModel, addDataStore }) {
             ) : (
               ""
             )}
-            <h2 className="text-2xl">Edit Task Details</h2>
+            <h2 className="text-2xl">Add New Task Details</h2>
           </div>
         </div>
         <div className="px-4 py-5">
