@@ -19,7 +19,7 @@ export default function AddItemModel({ closeModel, addDataStore }) {
     e.preventDefault();
     let data = {
       title: title,
-      link: link,
+      link: "/"+link,
       status: taskStatus,
     };
     try {
