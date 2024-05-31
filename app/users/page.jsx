@@ -13,7 +13,7 @@ export default async function page() {
     <div className='flex w-full md:max-w-[1200px] mx-auto justify-between mt-6 flex-wrap p-5'>
         {
             data.map((item,id)=>(
-                <div className='text-center w-full md:w-1/3 flex justify-center items-center flex-col gap-2'>
+                <div className='text-center w-full md:w-1/3 flex justify-center items-center flex-col gap-2' key={id}>
                 
                     <div className='p-3 flex flex-col items-center gap-3'>
                     <Link href={`/users/${item.id}`} key={item.id} className='' >

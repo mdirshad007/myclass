@@ -12,7 +12,7 @@ export default async function Page() {
     <div className='flex w-full md:w-[1200px] mx-auto justify-between mt-6 flex-wrap'>
     {
         userData.map((item,id)=>(
-            <div className='w-full md:w-1/3 text-center'>
+            <div className='w-full md:w-1/3 text-center' key={id}>
                 <div className='p-3 flex flex-col items-center gap-3'>
                 <img src={item.avatar} alt={item.first_name} className='w-28 h-28 object-cover rounded-full overflow-hidden'/>
                 <p className='font-bold'>{item.first_name} {item.last_name}</p>
