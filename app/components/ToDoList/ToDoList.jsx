@@ -28,9 +28,7 @@ export default function ToDoList() {
     const newList = [...list];
     newList.splice(id, 1);
     setList(newList);
-    console.log(newList);
     setDeleteStatus(status);
-    console.log("============>Delete", status);
     setTimeout(() => {
       setDeleteStatus(false);
     }, 3000);

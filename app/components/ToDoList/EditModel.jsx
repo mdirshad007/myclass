@@ -16,7 +16,9 @@ export default function EditModel({ id, modelStatus, closeModel }) {
   useEffect(() => {
     try {
       async function fetchData() {
-        let listData = await fetch(`https://6654c2d73c1d3b6029374b42.mockapi.io/todo/list/${id}`);
+        let listData = await fetch(
+          `https://6654c2d73c1d3b6029374b42.mockapi.io/todo/list/${id}`
+        );
         listData = await listData.json();
         setTitle(listData.title);
         setLink(listData.link);
@@ -28,8 +30,32 @@ export default function EditModel({ id, modelStatus, closeModel }) {
     }
   }, [id]);
 
+  const handelUpdateTaskData = () => {
+    const newData = {
+      title: title,
+      link: link,
+      status: taskStatus,
+    };
+
+    updateData(newData);
+  };
+  const updateData = async (newData) => {
+    let result = await fetch(
+      `https://6654c2d73c1d3b6029374b42.mockapi.io/todo/list/${id}`,
+      {
+        method: "PUT",
+        body: JSON.stringify(newData),
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  };
+
   return (
-    <div ref={modelRef} onClick={handleCloseModelByBg} className="fixed inset-0 bg-black backdrop-blur-sm bg-opacity-40 flex justify-center items-center px-3 py-10">
+    <div
+      ref={modelRef}
+      onClick={handleCloseModelByBg}
+      className="fixed inset-0 bg-black backdrop-blur-sm bg-opacity-40 flex justify-center items-center px-3 py-10"
+    >
       <div className="max-w-3xl w-full bg-white rounded-lg">
         <div className="relative px-4 py-5 border-b border-gray-200">
           <button className="absolute top-2 right-2" onClick={closeModel}>
@@ -74,7 +100,10 @@ export default function EditModel({ id, modelStatus, closeModel }) {
             </select>
           </div>
           <div className="flex justify-start">
-            <button className="bg-green-600 text-white px-6 py-3 rounded">
+            <button
+              className="bg-green-600 text-white px-6 py-3 rounded"
+              onClick={handelUpdateTaskData}
+            >
               Task Update
             </button>
           </div>
