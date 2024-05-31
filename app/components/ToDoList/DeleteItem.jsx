@@ -12,7 +12,7 @@ export default function DeleteItem({ id, index, deleteUserState }) {
     result = await result.json();
     if (result.id) {
       setDeleteStatus(true);
-      deleteUserState(index, deleteStatus);
+      deleteUserState(index, true);
     }
   };
   return (

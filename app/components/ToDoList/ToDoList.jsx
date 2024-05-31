@@ -6,6 +6,7 @@ import DeleteItem from "./DeleteItem";
 import EditItem from "./EditItem";
 import Link from "next/link";
 import AddItemModel from "./AddItemModel";
+import Alert from "./Alert";
 
 export default function ToDoList() {
   const [list, setList] = useState(null);
@@ -18,11 +19,10 @@ export default function ToDoList() {
     let data = await response.json();
     setList(data);
   };
-  
+
   useEffect(() => {
     fetchList();
   }, []);
-
 
   const handleDeleteUserUpdate = (id, status) => {
     const newList = [...list];
@@ -30,28 +30,47 @@ export default function ToDoList() {
     setList(newList);
     console.log(newList);
     setDeleteStatus(status);
+    console.log("============>Delete", status);
+    setTimeout(() => {
+      setDeleteStatus(false);
+    }, 3000);
   };
   const [modelState, setModelState] = useState(false);
   const handelAddTask = () => {
     setModelState(true);
   };
-  const [resultStatus,setresultStatus]=useState(0)
+  const [resultStatus, setresultStatus] = useState(0);
 
   const handelAddDataStore = (data) => {
-    setresultStatus(data)
+    setresultStatus(data);
     setTimeout(() => {
-      setresultStatus(0)
+      setresultStatus(0);
     }, 3000);
   };
-  useEffect(()=>{
+  useEffect(() => {
     fetchList();
-  },[resultStatus])
+  }, [resultStatus]);
 
   return (
     <div>
-      <div className="flex justify-start">
-        <p className={`text-green-600 font-bold bg-green-100 rounded-md w-full transition-all mb-5 ${resultStatus!=0?'opacity-1 h-auto px-3 py-4':'opacity-0 h-0'}`}>New Record is added</p>
-      </div>
+      {resultStatus == 1 ? (
+        <Alert
+          resultStatus={resultStatus}
+          msg="New Record is added"
+          className="text-green-600 bg-green-100"
+        />
+      ) : (
+        ""
+      )}
+
+      {deleteStatus && (
+        <Alert
+          resultStatus={1}
+          msg="Record is deleted"
+          className="text-red-600 bg-red-100"
+        />
+      )}
+
       <div className="flex justify-end">
         <button
           className="bg-blue-700 text-white px-4 py-3 rounded mb-3"
@@ -60,11 +79,7 @@ export default function ToDoList() {
           Add Task
         </button>
       </div>
-      {deleteStatus && (
-        <p className="text-red-600 font-bold text-xl mb-5">
-          Deleted Successfully
-        </p>
-      )}
+
       {list &&
         list.map((item, index) => (
           <ul
