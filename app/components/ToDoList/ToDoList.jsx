@@ -49,6 +49,17 @@ export default function ToDoList() {
     fetchList();
   }, [resultStatus]);
 
+  const [updateStatus, setUpdateStatus] = useState(0);
+
+  const handelUpdateDataStore=(status)=>{
+    setUpdateStatus(status)
+    fetchList();
+    setTimeout(() => {
+      setUpdateStatus(0);
+    }, 3000);
+  }
+
+
   return (
     <div>
       {resultStatus == 1 ? (
@@ -56,6 +67,15 @@ export default function ToDoList() {
           resultStatus={resultStatus}
           msg="New Record is added"
           className="text-green-600 bg-green-100"
+        />
+      ) : (
+        ""
+      )}
+      {updateStatus == 1 ? (
+        <Alert
+          resultStatus={updateStatus}
+          msg="Task is updated"
+          className="text-gray-800 bg-yellow-100"
         />
       ) : (
         ""
@@ -93,7 +113,7 @@ export default function ToDoList() {
             </Link>
             <div className="flex gap-2">
               <div>
-                <EditItem id={item.id} />
+                <EditItem id={item.id} updateDataStore={handelUpdateDataStore}/>
               </div>
               <div>
                 <DeleteItem
