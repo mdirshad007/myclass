@@ -1,8 +1,9 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 import { useSelector } from "react-redux";
 
-export default function ProductView() {
+export default function page() {
   const productData = useSelector((data) => data.products);
   return (
     <div>

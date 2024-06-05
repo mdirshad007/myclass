@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-export const store=configureStore({
-    reduscer1:{}
-})
+import reducer from "./slice";
+export const store = configureStore({
+  reducer, // <- Here is the correction
+});
