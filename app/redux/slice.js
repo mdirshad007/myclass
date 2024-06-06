@@ -4,7 +4,7 @@ const initialState = {
 };
 
 const sliceData = createSlice({
-  name: "addUserSlice",
+  name: "productSlice",
   initialState,
   reducers: {
     addProduct: (state, action) => {
@@ -14,8 +14,14 @@ const sliceData = createSlice({
       };
       state.products.push(data);
     },
+    removeProduct: (state, action) => {
+      const data = state.products.filter((item) => {
+        return item.id !== action.payload; //remove data
+      });
+      state.products = data;
+    },
   },
 });
 
-export const { addProduct } = sliceData.actions;
+export const { addProduct, removeProduct } = sliceData.actions;
 export default sliceData.reducer;

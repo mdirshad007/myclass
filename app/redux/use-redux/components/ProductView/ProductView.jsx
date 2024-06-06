@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IoIosClose } from "react-icons/io";
+import { removeProduct } from "@/app/redux/slice";
 
 export default function ProductView() {
+  const dispatch = useDispatch();
   const productData = useSelector((data) => data.products);
   return (
     <div>
@@ -15,7 +17,10 @@ export default function ProductView() {
             className="bg-slate-200 text-black px-3 py-1 rounded-full w-auto flex gap-2 justify-between"
           >
             {item.name}
-            <button className="text-gray-500 hover:text-red-600 text-lg">
+            <button
+              className="text-gray-500 hover:text-red-600 text-lg"
+              onClick={() => dispatch(removeProduct(item.id))}
+            >
               <IoIosClose />
             </button>
           </li>
