@@ -15,6 +15,7 @@ const sliceData = createSlice({
       state.products.push(data);
     },
     removeProduct: (state, action) => {
+      console.log(action)
       const data = state.products.filter((item) => {
         return item.id !== action.payload; //remove data
       });

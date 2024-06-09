@@ -6,7 +6,7 @@ import { removeProduct } from "@/app/redux/slice";
 
 export default function ProductView() {
   const dispatch = useDispatch();
-  const productData = useSelector((data) => data.products);
+  const productData = useSelector((data) => data.productData.products);
   return (
     <div>
       <h2 className="text-xl font-semibold">All Products Record</h2>

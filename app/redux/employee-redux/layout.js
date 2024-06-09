@@ -1,4 +1,5 @@
 import React from "react";
+import EmployeeProvider from "./EmployeeProvider";
 // import Providers from "../providers";
 
 export default function ReduxLayout({ children }) {
@@ -10,7 +11,7 @@ export default function ReduxLayout({ children }) {
         </h1>
       </div>
       <hr className="mb-5" />
-      {children}
+      <EmployeeProvider>{children}</EmployeeProvider>
     </div>
   );
 }

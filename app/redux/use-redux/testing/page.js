@@ -5,7 +5,7 @@ import { IoIosClose } from "react-icons/io";
 import { removeProduct } from "../../slice";
 
 export default function Page() {
-  const productData = useSelector((data) => data.products);
+  const productData = useSelector((data) => data.productData.products);
   const dispatch = useDispatch();
   return (
     <div>

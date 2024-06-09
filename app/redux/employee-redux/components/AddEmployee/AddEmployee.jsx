@@ -1,12 +1,14 @@
 "use client";
+import { addEmployee } from "@/app/redux/EmployeeSlice";
 import React, {useState } from "react";
+import { useDispatch } from "react-redux";
 
 
 export default function AddEmployee() {
   const [employeeName, setEmployeeName] = useState("");
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const handelEmployeeDispatch = () => {
-    // dispatch(addProduct(productName));
+    dispatch(addEmployee(employeeName));
     console.log(employeeName)
     setEmployeeName("");
   };

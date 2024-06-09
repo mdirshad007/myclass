@@ -1,5 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import reducer from "./slice";
+import productReducer from "./slice";
+import employeeReducer from "./EmployeeSlice"
 export const store = configureStore({
-  reducer, // <- Here is the correction
+  reducer:{
+    productData:productReducer,
+    employeeData:employeeReducer,
+  } // <- Here is the correction
 });
