@@ -1,7 +1,22 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
+// Helper functions to safely interact with localStorage
+const getEmployeeFromLocalStorage = () => {
+    if (typeof localStorage !== "undefined") {
+        const storedData = localStorage.getItem("employee");
+        return storedData ? JSON.parse(storedData) : [];
+    }
+    return [];
+};
+
+const setEmployeeToLocalStorage = (data) => {
+    if (typeof localStorage !== "undefined") {
+        localStorage.setItem("employee", JSON.stringify(data));
+    }
+};
+
 const initialState = {
-    employee: JSON.parse(localStorage.getItem("employee")) || [],
+    employee: getEmployeeFromLocalStorage(),
 };
 
 const EmployeeSlice = createSlice({
@@ -14,12 +29,12 @@ const EmployeeSlice = createSlice({
                 name: action.payload,
             };
             state.employee.push(data);
-            localStorage.setItem("employee", JSON.stringify(state.employee));
+            setEmployeeToLocalStorage(state.employee);
         },
         removeEmployee: (state, action) => {
             const data = state.employee.filter((item) => item.id !== action.payload);
             state.employee = data;
-            localStorage.setItem("employee", JSON.stringify(state.employee));
+            setEmployeeToLocalStorage(state.employee);
         },
     },
 });
