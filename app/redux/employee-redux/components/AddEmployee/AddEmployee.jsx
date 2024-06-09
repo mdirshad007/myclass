@@ -9,7 +9,7 @@ export default function AddEmployee() {
   const dispatch = useDispatch();
   const handelEmployeeDispatch = () => {
     dispatch(addEmployee(employeeName));
-    console.log(employeeName)
+    // console.log(employeeName)
     setEmployeeName("");
   };
 

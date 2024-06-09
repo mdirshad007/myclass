@@ -12,7 +12,7 @@ export default function EmployeeView() {
       <hr className="my-10" />
       <h2 className="text-xl font-semibold">All Employee Record</h2>
       <ul className="flex flex-wrap gap-3 mt-5 text-gray-600">
-        {employeeData.map((item) => (
+        {employeeData?.map((item) => (
           <li
             key={item.id}
             className="bg-slate-200 text-black px-3 py-1 rounded-full w-auto flex gap-2 justify-between"
