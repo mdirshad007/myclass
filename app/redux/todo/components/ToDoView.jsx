@@ -2,19 +2,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IoIosClose } from "react-icons/io";
-import { removeProduct } from "@/app/redux/slice";
+import { removeTodos } from "../../todoSlice";
 
-export default function ProductView() {
+export default function ToDoView() {
   const dispatch = useDispatch();
-  const productData = useSelector((data) => data.productData.products);
-  console.log("Product data", productData);
   const todoData = useSelector((data) => data.todoSlice.todo);
   console.log("Todo data", todoData);
   return (
     <div>
-      <h2 className="text-xl font-semibold">All Products Record</h2>
+      <hr className="my-10" />
+      <h2 className="text-xl font-semibold">All To Do Task</h2>
       <ul className="flex flex-wrap gap-3 mt-5 text-gray-600">
-        {productData.map((item) => (
+        {todoData.map((item) => (
           <li
             key={item.id}
             className="bg-slate-200 text-black px-3 py-1 rounded-full w-auto flex gap-2 justify-between"
@@ -22,7 +21,7 @@ export default function ProductView() {
             {item.name}
             <button
               className="text-gray-500 hover:text-red-600 text-lg"
-              onClick={() => dispatch(removeProduct(item.id))}
+              onClick={() => dispatch(removeTodos(item.id))}
             >
               <IoIosClose />
             </button>
