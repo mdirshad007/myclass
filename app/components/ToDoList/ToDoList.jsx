@@ -7,6 +7,7 @@ import EditItem from "./EditItem";
 import Link from "next/link";
 import AddItemModel from "./AddItemModel";
 import Alert from "./Alert";
+import SearchBox from "../SearchBox/SearchBox";
 
 export default function ToDoList() {
   const [list, setList] = useState(null);
@@ -59,7 +60,16 @@ export default function ToDoList() {
     }, 3000);
   }
 
-
+  const [searchItem,setSearchItem]=useState("")
+  const handelSearchValue=(value)=>{
+    setSearchItem(value)
+  }
+  useEffect(()=>{
+    fetchList();
+  },[searchItem])
+  useEffect(()=>{
+    fetchList();
+  },[deleteStatus])
   return (
     <div>
       {resultStatus == 1 ? (
@@ -89,7 +99,8 @@ export default function ToDoList() {
         />
       )}
 
-      <div className="flex justify-end">
+      <div className="flex justify-between">
+        <SearchBox searchRecord={handelSearchValue}/>
         <button
           className="bg-blue-700 text-white px-4 py-3 rounded mb-3"
           onClick={handelAddTask}
@@ -99,7 +110,7 @@ export default function ToDoList() {
       </div>
 
       {list &&
-        list.map((item, index) => (
+       list.filter((item)=>item.title.toLowerCase().includes(searchItem)).map((item, index) => (
           <ul
             key={item.id}
             className="border-b border-gray-200 py-3 flex justify-between"
