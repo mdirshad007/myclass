@@ -70,6 +70,17 @@ export default function ToDoList() {
   useEffect(()=>{
     fetchList();
   },[deleteStatus])
+
+  // Pagination code start
+  const [currentPage,SetCurrentPage]=useState(1)
+  useEffect(()=>{
+  const recordsPerPage=5;
+  const lastIndex=currentPage*recordsPerPage;
+  const firstIndex=lastIndex-recordsPerPage;
+  const records=list.slice(firstIndex,lastIndex);
+  console.log("pagination========>",records)
+  },[fetchList])
+  
   return (
     <div>
       {resultStatus == 1 ? (
@@ -136,6 +147,16 @@ export default function ToDoList() {
             </div>
           </ul>
         ))}
+
+        <div className="mt-5 flex justify-center gap-5">
+          <button>Previous</button>
+          <ul className="flex gap-3">
+            <li><button>1</button></li>
+            <li><button>2</button></li>
+            <li><button>3</button></li>
+          </ul>
+          <button>Next</button>
+        </div>
       {modelState && (
         <AddItemModel
           closeModel={() => setModelState(false)}
