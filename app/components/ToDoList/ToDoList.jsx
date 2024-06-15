@@ -17,7 +17,7 @@ export default function ToDoList() {
   const [updateStatus, setUpdateStatus] = useState(0);
   const [searchItem, setSearchItem] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 5;
+  const recordsPerPage = 8;
 
   const fetchList = async () => {
     let response = await fetch(`https://6654c2d73c1d3b6029374b42.mockapi.io/todo/list`);
